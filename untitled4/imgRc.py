@@ -7,7 +7,7 @@ import numpy as np
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads/'
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'gif'])
-emotion=["Happy","Fear","Disappointed","Sad"]
+emotion=["Happy","Sad","Angry"]
 # For a given file, return whether it's an allowed type or not
 def allowed_file(filename):
     return '.' in filename and \
@@ -24,12 +24,13 @@ def upload():
         filename = secure_filename(upload_file.filename)
         upload_file.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename))
         model = keras.models.load_model('model/my_model.h5')
-        data = np.empty((1, 100, 100, 1), dtype="float32")
+        data = np.empty((1, 100, 100, 3), dtype="float32")
         img = Image.open("static/uploads/image01.jpg")
         arr = np.asarray(img, dtype="float32")
         data[0, :, :, :] = arr.reshape(100, 100, 1)
         result=model.predict_classes(data, batch_size=32, verbose=1)
         print result[0]
+        del model
         return emotion[int(result[0])]
     else:
         return 'hello, '+request.form.get('name', 'little apple')+'. failed'
