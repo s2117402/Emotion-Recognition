@@ -37,6 +37,8 @@ def upload():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
+
+//This is the code we put on server
 //we use flask based on python to build a web server,it can accept the post or get from clients
 //our client use post function to post server with some specific data,then server process it and send it back.
 //It achieve a basic API functionality.
