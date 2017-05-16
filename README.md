@@ -10,9 +10,10 @@ function and send it to server.Here is the tutorial below about opencv for Java 
 
 [link](http://docs.opencv.org/2.4/doc/tutorials/introduction/desktop_java/java_dev_intro.html)
 
-## Server terminal
+
+## Server terminal(Trainning Data included)
 I use python to finish this part.At first of all,I use python based on keras(tensorflow) to train
-a model,we input a 100*100 human face picture,it will give you a output with 3 possible cases.When 
+a model,we input a 150*150 human face picture,it will give you a output with 3 possible cases.When 
 we were trainning model,we used three convolution layer to process the pictures for a higher accuracy,
 the datasets we used is collected by ourselves,we catogoried it ourselves,we get a around 93% accuracy
 evetually.Then we used python based flask to build a web server to receive the post from mobile terminal,
